@@ -1,0 +1,34 @@
+a:link, a:visited {
+    text-decoration: none;
+    color: #F58529;
+    background-color: transparent;
+}
+a:hover, a:active {
+    text-decoration: underline;
+    color: rgb(92, 26, 26);
+}
+.link{
+    margin-left:40%;
+    margin-bottom:3%
+}
+
+.sottoTitoli{
+    margin-top:5%;
+    color:rgb(177, 23, 23)
+}
+
+
+
+@media screen and (min-width: 1200px) {
+    .link{
+        margin-left:1%;
+        margin-bottom:1%
+    }
+    .divGrande{
+        margin-left:1%
+    }
+    .sottoTitoli{
+        margin-left:1%;
+        margin-top:1%
+    }
+}

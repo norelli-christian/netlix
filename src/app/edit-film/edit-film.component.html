@@ -1,45 +1,46 @@
-<div>
+<div><a class="link" routerLink="/films/">Torna a film</a></div>
+<div class="myDiv">
     <div *ngIf="filmService.selectedFilm">
-      <label>Titolo:</label>  <input type="text" placeholder="Titolo" [(ngModel)]="filmService.selectedFilm.title"> 
+      <label><b>Titolo:</b></label>  <input type="text" placeholder="Titolo" [(ngModel)]="filmService.selectedFilm.title" class="input"> 
       </div>
     
       <div >
-        <label>Descrizione:</label> <input type="text"  placeholder="Descrizione" [(ngModel)]="filmService.selectedFilm.description">
+        <label><b>Descrizione:</b></label> <input type="text"  placeholder="Descrizione" [(ngModel)]="filmService.selectedFilm.description"  class="input">
       </div>
     
       <div>
-        <label>Regista:</label> <input type="text"  placeholder="Regista" [(ngModel)]="filmService.selectedFilm.director">
+        <label><b>Regista:</b></label> <input type="text"  placeholder="Regista" [(ngModel)]="filmService.selectedFilm.director"  class="input">
       </div>
     
       <div >
-        <label>Durata:</label> <input type="text"  placeholder="Durata" [(ngModel)]="filmService.selectedFilm.duration">
+        <label><b>Durata:</b></label> <input type="text"  placeholder="Durata" [(ngModel)]="filmService.selectedFilm.duration"  class="input">
       </div>
     
       <div >
-        <label>Anno di produzione: </label><input type="number"  placeholder="Anno di produzione" [(ngModel)]="filmService.selectedFilm.releaseYear">
+        <label><b>Anno di produzione: </b></label><input type="number"  placeholder="Anno di produzione" [(ngModel)]="filmService.selectedFilm.releaseYear" class="input">
         </div>
 
       <div>
-        <label>Attori</label>
-        <select [(ngModel)] ="filmService.selectedFilm.cast" multiple>
+        <label><b>Attori</b></label>
+        <select [(ngModel)] ="filmService.selectedFilm.cast" multiple  class="input">
             <option [value] ="actor" *ngFor = "let actor of actors">{{actor.fistname}}{{actor.lastname}}</option>
         </select>
       </div> 
     
 
       <div>
-        <label>Generi</label>
-        <select [(ngModel)] ="filmService.newFilm.genres" multiple>
+        <label><b>Generi</b></label>
+        <select [(ngModel)] ="filmService.newFilm.genres" multiple  class="input">
             <option [value] ="genre" *ngFor = "let genre of genres">{{genre.name}}</option>
         </select>
       </div>
       
       <div >
-        <label>Tags:</label> <input type="text"  placeholder="Tags" [(ngModel)]="filmService.newFilm.tags">
+        <label><b>Tags:</b></label> <input type="text"  placeholder="Tags" [(ngModel)]="filmService.newFilm.tags"  class="input">
       </div>
 
-      <button (click)="filmService.edit()" routerLink="/films/add">MODIFICA</button>
+      <button (click)="filmService.edit()" routerLink="/films/add" class="btn btn-outline-info btn-sm">MODIFICA</button>
 
       
     </div>
-<div><button routerLink="/films">Torna a films</button></div>
+    

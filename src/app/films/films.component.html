@@ -1,18 +1,20 @@
-<input type="text" value="">
+<div><a class="link" routerLink="/films/add">Aggiungi un film</a></div>
+<div><a class="link" routerLink="/dashboard">Torna alla ashboard</a></div>
+<div class="ricerca"><h6>Ricerca film: <input type="text" value=""></h6></div>
 
-<div *ngFor="let film of this.service.films">
-    <div>
-        Titolo: {{film.title}} Valutazione:{{film.stars}} Durata:{{film.duration}}
-        <button (click) ="film.show = !film.show">Espandi</button>
+
+
+<div *ngFor="let film of this.service.films" class="divGrande">
+    <div class="espandi">
+        <b>Titolo: </b> {{film.title}} <b>Valutazione: </b>{{film.stars}} <b>Durata: </b>{{film.duration}}
+        <button (click) ="film.show = !film.show" class="btn btn-outline-info btn-sm">Espandi</button>
     </div>
     
     <div *ngIf ="film.show">
-       Attori: {{getCastList(film.cast)}} Anno di uscita:{{film.releaseYear}} Generi: {{getGenreList(film.genres)}} Tag: {{film.tags}}
+      <b>Attori: </b>  {{getCastList(film.cast)}} <b>Anno di uscita: </b>{{film.releaseYear}} <b>Generi: </b> {{getGenreList(film.genres)}} <b>Tag:</b> {{film.tags}}
     </div>
-    <div><button (click)="selectThisFilm(film)" routerLink="/films/edit">Modifica film</button></div>
+    <div><button (click)="selectThisFilm(film)" routerLink="/films/edit" class="btn btn-outline-info btn-sm">Modifica film</button></div>
+    <hr>
 </div>
 
 
-<div><button routerLink="/films/add">Aggiungi film</button></div>
-<div><button routerLink="/films/edit">Modifica film</button></div>
-<div><button routerLink="/dashboard">Dashboard</button></div>

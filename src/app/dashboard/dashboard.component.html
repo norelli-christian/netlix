@@ -1,25 +1,29 @@
-<a routerLink="/films">Film</a>
-<a routerLink="/actors">Attori</a>
-<a routerLink="/genres">Generi</a>
+<div class="link"><a routerLink="/films">Lista film</a></div>
+<div class="link"><a routerLink="/actors">Lista attori</a></div>
+<div class="link"><a routerLink="/genres">Generi</a></div>
 
 
-<p>ULTIMI FILM INSERITI</p>
-<div *ngFor="let film of lastFilm">
-    {{film.title}}-{{film.director}}-{{film.duration}}-{{film.releaseYear}}
+<h5 class="sottoTitoli">ULTIMI FILM INSERITI</h5>
+<div *ngFor="let film of lastFilm" class="divGrande">
+    <div><b>Titolo: </b>{{film.title}}<b> Regista: </b>{{film.director}}<b> Durata: </b>{{film.duration}}<b> Anno di uscita: </b>{{film.releaseYear}}</div>
+    <hr>
 </div>
 
-<P>TOP 3 FILM</P>
+<h5 class="sottoTitoli">TOP 3 FILM</h5>
 
-<div *ngFor="let film of topFilm">
-    {{film.title}}-{{film.director}}-{{film.duration}}-{{film.releaseYear}}
+<div *ngFor="let film of topFilm" class="divGrande">
+    <div><b>Titolo: </b>{{film.title}}<b> Regista: </b>{{film.director}}<b> Durata: </b>{{film.duration}}<b> Anno di uscita:</b>{{film.releaseYear}}
+        <hr>
+    </div>
 </div>
 
 <div *ngIf="!service.loggedUser">
-    <button (click)="service.login()">LOGIN</button>
+    <button class="btn btn-outline-success"(click)="service.login()">LOGIN</button>
 </div>
 <div *ngIf="service.loggedUser">
-    BENTORNATO {{service.loggedUser.firstname}} {{service.loggedUser.lastname}}
-    <button (click)="service.logout()">LOGOUT</button>
+    <b>BENTORNATO</b> {{service.loggedUser.firstname}} {{service.loggedUser.lastname}}
+    
+    <button class="btn btn-outline-dark" (click)="service.logout()">LOGOUT</button>
 </div>
 
 
