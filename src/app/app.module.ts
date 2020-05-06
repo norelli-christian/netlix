@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import {FormsModule} from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,6 +14,8 @@ import { EditFilmComponent } from './edit-film/edit-film.component';
 import { EditGenreComponent } from './edit-genre/edit-genre.component';
 import { FilmsComponent } from './films/films.component';
 import { GenresComponent } from './genres/genres.component';
+import {NgxWebstorageModule} from 'ngx-webstorage';
+
 
 @NgModule({
   declarations: [
@@ -30,7 +33,9 @@ import { GenresComponent } from './genres/genres.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgxWebstorageModule.forRoot(),
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

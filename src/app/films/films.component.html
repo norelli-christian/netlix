@@ -1,1 +1,18 @@
-<p>films works!</p>
+<input type="text" value="">
+
+<div *ngFor="let film of this.service.films">
+    <div>
+        Titolo: {{film.title}} Valutazione:{{film.stars}} Durata:{{film.duration}}
+        <button (click) ="film.show = !film.show">Espandi</button>
+    </div>
+    
+    <div *ngIf ="film.show">
+       Attori: {{getCastList(film.cast)}} Anno di uscita:{{film.releaseYear}} Generi: {{getGenreList(film.genres)}} Tag: {{film.tags}}
+    </div>
+    <div><button (click)="selectThisFilm(film)" routerLink="/films/edit">Modifica film</button></div>
+</div>
+
+
+<div><button routerLink="/films/add">Aggiungi film</button></div>
+<div><button routerLink="/films/edit">Modifica film</button></div>
+<div><button routerLink="/dashboard">Dashboard</button></div>

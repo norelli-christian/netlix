@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Actor } from '../models/Actor';
+import { Genre } from '../models/Genre';
+import { FilmService } from '../Services/film.service';
+import { GenreService } from '../Services/genre.service';
+import { ActorService } from '../Services/actor.service';
 
 @Component({
   selector: 'app-edit-film',
@@ -7,9 +12,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditFilmComponent implements OnInit {
 
-  constructor() { }
+  actors:Actor[];
+  genres:Genre[];
+  constructor(public filmService:FilmService, public actorService:ActorService, public genreService:GenreService) { }
 
   ngOnInit(): void {
+    this.actors = this.actorService.getActors();
+    this.genres = this.genreService.getGenres();
   }
 
 }

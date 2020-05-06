@@ -21,9 +21,9 @@ const routes: Routes = [
   { path: 'actors', component: ActorsComponent },
   { path: 'actors/add', component: AddActorComponent },
   { path: 'actors/edit', component: EditActorComponent },
-  { path: 'genre', component: GenresComponent },
-  { path: 'genre/add', component: AddGenreComponent },
-  { path: 'genre/edit', component: EditGenreComponent },
+  { path: 'genres', component: GenresComponent },
+  { path: 'genres/add', component: AddGenreComponent },
+  { path: 'genres/edit', component: EditGenreComponent },
 ];
 
 @NgModule({

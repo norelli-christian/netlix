@@ -55,7 +55,7 @@ const FILMS: Film[] = [
     director:"Stanley Kubrick",
     duration:"144 min",
     releaseYear:1980,
-    stars:4,
+    stars:3,
     cast:[{
       fistname:"Jack",
       lastname:"Nicholson"
@@ -76,7 +76,7 @@ const FILMS: Film[] = [
     director:"Peter Jackson",
     duration:"178 min",
     releaseYear:2001,
-    stars:4,
+    stars:2,
     cast:[{
       fistname:"Elijah",
       lastname:"Wood"
@@ -100,8 +100,7 @@ const FILMS: Film[] = [
 })
 export class FilmService {
   films:Film[];
-  newFilm: Film;
-  selectedFilm: Film = {
+  newFilm: Film ={
     title:"",
     description:"",
     director:"",
@@ -112,6 +111,8 @@ export class FilmService {
     genres:null,
     tags:""
   };
+  selectedFilm: Film;
+
   constructor(public localStorage:LocalStorageService) { }
 
   getFilms(): Film[]{
@@ -120,27 +121,42 @@ export class FilmService {
   }
 
   addFilms(): void{
-    this.films.push(this.selectedFilm);
+    if(!this.films){
+      this.getFilms();
+    }
+    this.films.push(this.newFilm);
     this.localStorage.store('films', this.films);
-    this.reset();
-  }
-
-  reset():void{
-    this.selectedFilm =  {
+    this.newFilm =  {
       title:"",
       description:"",
       director:"",
       duration:"",
       releaseYear:0,
       stars:0,
-      cast: null,
-      genres:null,
+      cast: [],
+      genres:[],
       tags:""
     }
   }
 
+
   edit(){   
-    this.selectedFilm = null;
     this.localStorage.store('films', this.films);
+    this.selectedFilm = null;
+  }
+
+  getLastFilms():Film[]{
+    
+    return this.films.slice(0, 4);
+  }
+
+  getTopFilms():Film[]{
+    return this.films.sort(function(film1, film2){
+      if (film1.stars > film2.stars)
+          return -1;
+      if (film1.stars < film2.stars)
+          return 1;
+      return 0
+  }).slice(0,3);
   }
 }

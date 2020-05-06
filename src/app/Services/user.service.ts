@@ -16,8 +16,6 @@ export class UserService {
       lastname:"Norelli",
       favoritesFilm:[]
     }
-  }
-  save(){
     this.localStorage.store('users', this.loggedUser);
   }
 

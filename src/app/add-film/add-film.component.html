@@ -1,1 +1,48 @@
-<p>add-film works!</p>
+<div>
+    <div>
+      <label>Titolo:</label>  <input type="text" placeholder="Titolo" [(ngModel)]="filmService.newFilm.title"> 
+      </div>
+    
+      <div >
+        <label>Descrizione:</label> <input type="text"  placeholder="Descrizione" [(ngModel)]="filmService.newFilm.description">
+      </div>
+    
+      <div>
+        <label>Regista:</label> <input type="text"  placeholder="Regista" [(ngModel)]="filmService.newFilm.director">
+      </div>
+    
+      <div >
+        <label>Durata:</label> <input type="text"  placeholder="Durata" [(ngModel)]="filmService.newFilm.duration">
+      </div>
+    
+      <div >
+        <label>Anno di produzione: </label><input type="number"  placeholder="Anno di produzione" [(ngModel)]="filmService.newFilm.releaseYear">
+        </div>
+
+      <div >
+        <label>Valutazione:</label> <input type="number" min ="0" max = "5" step ="0.5" placeholder="Valutazione" [(ngModel)]="filmService.newFilm.stars">
+        </div> 
+
+      <div>
+        <label>Attori</label>
+        <select [(ngModel)] ="filmService.newFilm.cast" multiple>
+            <option [value] ="actor" *ngFor = "let actor of actors">{{actor.fistname}}{{actor.lastname}}</option>
+        </select>
+      </div> 
+    
+
+      <div>
+        <label>Generi</label>
+        <select [(ngModel)] ="filmService.newFilm.genres" multiple>
+            <option [value] ="genre" *ngFor = "let genre of genres">{{genre.name}}</option>
+        </select>
+      </div>
+      
+      <div >
+        <label>Tags:</label> <input type="text"  placeholder="Tags" [(ngModel)]="filmService.newFilm.tags">
+      </div>
+
+      <button (click)="filmService.addFilms()">AGGIUNGI</button>
+
+      <div><button routerLink="/films">Torna a films</button></div>
+    </div>

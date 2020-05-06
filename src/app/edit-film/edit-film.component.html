@@ -1,1 +1,45 @@
-<p>edit-film works!</p>
+<div>
+    <div *ngIf="filmService.selectedFilm">
+      <label>Titolo:</label>  <input type="text" placeholder="Titolo" [(ngModel)]="filmService.selectedFilm.title"> 
+      </div>
+    
+      <div >
+        <label>Descrizione:</label> <input type="text"  placeholder="Descrizione" [(ngModel)]="filmService.selectedFilm.description">
+      </div>
+    
+      <div>
+        <label>Regista:</label> <input type="text"  placeholder="Regista" [(ngModel)]="filmService.selectedFilm.director">
+      </div>
+    
+      <div >
+        <label>Durata:</label> <input type="text"  placeholder="Durata" [(ngModel)]="filmService.selectedFilm.duration">
+      </div>
+    
+      <div >
+        <label>Anno di produzione: </label><input type="number"  placeholder="Anno di produzione" [(ngModel)]="filmService.selectedFilm.releaseYear">
+        </div>
+
+      <div>
+        <label>Attori</label>
+        <select [(ngModel)] ="filmService.selectedFilm.cast" multiple>
+            <option [value] ="actor" *ngFor = "let actor of actors">{{actor.fistname}}{{actor.lastname}}</option>
+        </select>
+      </div> 
+    
+
+      <div>
+        <label>Generi</label>
+        <select [(ngModel)] ="filmService.newFilm.genres" multiple>
+            <option [value] ="genre" *ngFor = "let genre of genres">{{genre.name}}</option>
+        </select>
+      </div>
+      
+      <div >
+        <label>Tags:</label> <input type="text"  placeholder="Tags" [(ngModel)]="filmService.newFilm.tags">
+      </div>
+
+      <button (click)="filmService.edit()" routerLink="/films/add">MODIFICA</button>
+
+      
+    </div>
+<div><button routerLink="/films">Torna a films</button></div>
