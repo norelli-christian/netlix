@@ -11,6 +11,7 @@ import { Film } from '../models/film';
 export class DashboardComponent implements OnInit {
   lastFilm : Film[];
   topFilm: Film[];
+
   constructor(public service: UserService,
               public filmService: FilmService
      ) { }

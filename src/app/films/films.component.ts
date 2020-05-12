@@ -3,7 +3,7 @@ import { FilmService } from '../Services/film.service';
 import { Film } from '../models/film';
 import { Actor } from '../models/Actor';
 import { Genre } from '../models/Genre';
-import {ASSETS_PATH} from '../app.component';
+import { CONFIG } from '../config';
 
 @Component({
   selector: 'app-films',
@@ -13,7 +13,7 @@ import {ASSETS_PATH} from '../app.component';
 export class FilmsComponent implements OnInit {
   films:Film[];
 
-  ASSETS_PATH = ASSETS_PATH;
+  assetsPath = CONFIG.assetsPath;
   
   constructor(public service:FilmService) { }
 

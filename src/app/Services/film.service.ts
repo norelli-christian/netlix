@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 import { Film } from '../models/Film';
 import { ActorService } from './actor.service';
 import { LocalStorageService } from 'ngx-webstorage';
-import {ASSETS_PATH} from '../app.component';
+import { CONFIG } from '../config';
+import { config } from 'rxjs';
+
 
 const FILMS: Film[] = [
   
@@ -27,7 +29,7 @@ const FILMS: Film[] = [
       name:"Fantascienza"  
     }],
     tags:"Tags",
-    coverUrl:ASSETS_PATH+"images/ilpadrino.png"
+    coverUrl:CONFIG.assetsPath+"images/ilpadrino.png"
   },
 
   {
@@ -49,7 +51,7 @@ const FILMS: Film[] = [
       name:"Avventura"  
     }],
     tags:"Tags",
-    coverUrl:ASSETS_PATH+"images/squalo.jpg"
+    coverUrl:CONFIG.assetsPath+"images/squalo.jpg"
   },
 
   {
@@ -71,7 +73,7 @@ const FILMS: Film[] = [
       name:"Avventura"  
     }],
     tags:"Tags",
-    coverUrl:ASSETS_PATH+"images/shining.jpg"
+    coverUrl:CONFIG.assetsPath+"images/shining.jpg"
   },
 
   {
@@ -93,7 +95,7 @@ const FILMS: Film[] = [
       name:"Avventura"  
     }],
     tags:"Tags",
-    coverUrl:ASSETS_PATH+"images/anelli.jpg"
+    coverUrl:CONFIG.assetsPath+"images/anelli.jpg"
   }
 
 
@@ -121,7 +123,6 @@ export class FilmService {
 
   constructor(public localStorage:LocalStorageService) { }
 
-  ASSETS_PATH = ASSETS_PATH;
 
   getFilms(): Film[]{
     this.films = this.localStorage.retrieve('films') || FILMS;
