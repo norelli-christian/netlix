@@ -8,3 +8,4 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'Netlifx';
 }
+export const ASSETS_PATH = 'https://raw.githubusercontent.com/norelli-christian/netlix/master/src/assets/';

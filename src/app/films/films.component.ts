@@ -3,6 +3,7 @@ import { FilmService } from '../Services/film.service';
 import { Film } from '../models/film';
 import { Actor } from '../models/Actor';
 import { Genre } from '../models/Genre';
+import {ASSETS_PATH} from '../app.component';
 
 @Component({
   selector: 'app-films',
@@ -11,6 +12,9 @@ import { Genre } from '../models/Genre';
 })
 export class FilmsComponent implements OnInit {
   films:Film[];
+
+  ASSETS_PATH = ASSETS_PATH;
+  
   constructor(public service:FilmService) { }
 
   ngOnInit(): void {

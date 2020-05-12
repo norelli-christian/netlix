@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Film } from '../models/Film';
 import { ActorService } from './actor.service';
 import { LocalStorageService } from 'ngx-webstorage';
+import {ASSETS_PATH} from '../app.component';
 
 const FILMS: Film[] = [
   
@@ -25,7 +26,8 @@ const FILMS: Film[] = [
     genres:[{
       name:"Fantascienza"  
     }],
-    tags:"Tags"
+    tags:"Tags",
+    coverUrl:ASSETS_PATH+"images/ilpadrino.png"
   },
 
   {
@@ -46,7 +48,8 @@ const FILMS: Film[] = [
     genres:[{
       name:"Avventura"  
     }],
-    tags:"Tags"
+    tags:"Tags",
+    coverUrl:ASSETS_PATH+"images/squalo.jpg"
   },
 
   {
@@ -67,7 +70,8 @@ const FILMS: Film[] = [
     genres:[{
       name:"Avventura"  
     }],
-    tags:"Tags"
+    tags:"Tags",
+    coverUrl:ASSETS_PATH+"images/shining.jpg"
   },
 
   {
@@ -88,7 +92,8 @@ const FILMS: Film[] = [
     genres:[{
       name:"Avventura"  
     }],
-    tags:"Tags"
+    tags:"Tags",
+    coverUrl:ASSETS_PATH+"images/anelli.jpg"
   }
 
 
@@ -109,11 +114,14 @@ export class FilmService {
     stars:0,
     cast: null,
     genres:null,
-    tags:""
+    tags:"",
+    coverUrl:""
   };
   selectedFilm: Film;
 
   constructor(public localStorage:LocalStorageService) { }
+
+  ASSETS_PATH = ASSETS_PATH;
 
   getFilms(): Film[]{
     this.films = this.localStorage.retrieve('films') || FILMS;
@@ -135,7 +143,8 @@ export class FilmService {
       stars:0,
       cast: [],
       genres:[],
-      tags:""
+      tags:"",
+      coverUrl:""
     }
   }
 

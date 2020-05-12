@@ -6,6 +6,7 @@
 
 <div *ngFor="let film of this.service.films" class="divGrande">
     <div class="espandi">
+      <img src="{{ASSETS_PATH}}{{film.coverUrl}}">
         <b>Titolo: </b> {{film.title}} <b>Valutazione: </b>{{film.stars}} <b>Durata: </b>{{film.duration}}
         <button (click) ="film.show = !film.show" class="btn btn-outline-info btn-sm">Espandi</button>
     </div>
