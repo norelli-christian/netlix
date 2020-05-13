@@ -17,7 +17,17 @@ a:hover, a:active {
     color:rgb(177, 23, 23)
 }
 
-
+.ricerca{
+    margin-top: 3%;
+    margin-left:25%
+}
+.buttonLogin{
+    margin-top:1.5%;
+    margin-left:25%
+}
+.scritta{
+    margin-left:25%;
+}
 
 @media screen and (min-width: 1200px) {
     .link{
@@ -30,5 +40,24 @@ a:hover, a:active {
     .sottoTitoli{
         margin-left:1%;
         margin-top:1%
+    }
+    .ricerca{
+        margin-bottom: 1%;
+        margin-left:1%;
+        margin-top:0%
+    }
+    .buttonLogin{
+        margin-left:1%;
+        margin-top: 0.5%;
+    }
+    .buttonLogout{
+        margin-left:1%;
+    }
+    .scrittaLogIn{
+        margin-left:1%;
+        margin-bottom:0.5%
+    }
+    .scritta{
+        margin-left:1%
     }
 }

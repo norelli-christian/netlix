@@ -2,28 +2,31 @@
 <div class="link"><a routerLink="/actors">Lista attori</a></div>
 <div class="link"><a routerLink="/genres">Generi</a></div>
 
+<div *ngIf="!service.loggedUser">
+    <div class="ricerca"><input type="text" [(ngModel)]="username" placeholder="Username"></div>
+    <div class="ricerca"><input type="password" [(ngModel)]="password" placeholder="Password"></div>
+
+    <div *ngIf="successLogin === false" class="scritta"><b>Errore nel login!</b></div>
+
+    <button class="btn btn-outline-info btn-sm buttonLogin" (click)="login()">Login</button>
+</div>
+
+<div *ngIf="service.loggedUser" >
+   <div class="scrittaLogIn"><b>BENTORNATO</b> {{ service.loggedUser.firstname }} {{ service.loggedUser.lastname }}! </div> <button class="btn btn-outline-dark btn-sm buttonLogout"  (click)="service.logout()">LOGOUT</button>
+</div>
 
 <h5 class="sottoTitoli">ULTIMI FILM INSERITI</h5>
 <div *ngFor="let film of lastFilm" class="divGrande">
-    <div><b>Titolo: </b>{{film.title}}<b> Regista: </b>{{film.director}}<b> Durata: </b>{{film.duration}}<b> Anno di uscita: </b>{{film.releaseYear}}</div>
+    <div><img [src] = "film.coverUrl" height="50" width="50"><b *ngIf="service.loggedUser" (click)="hearth(film)">&#x2661;</b><b> Titolo: </b>{{film.title}}<b> Regista: </b>{{film.director}}<b> Durata: </b>{{film.duration}}<b> Anno di uscita: </b>{{film.releaseYear}}</div>
     <hr>
 </div>
 
 <h5 class="sottoTitoli">TOP 3 FILM</h5>
 
 <div *ngFor="let film of topFilm" class="divGrande">
-    <div><b>Titolo: </b>{{film.title}}<b> Regista: </b>{{film.director}}<b> Durata: </b>{{film.duration}}<b> Anno di uscita:</b>{{film.releaseYear}}
+    <div><img [src] = "film.coverUrl" height="50" width="50"><b *ngIf="service.loggedUser" (click)="hearth(film)">&#x2661;</b><b>Titolo: </b>{{film.title}}<b> Regista: </b>{{film.director}}<b> Durata: </b>{{film.duration}}<b> Anno di uscita:</b>{{film.releaseYear}}
         <hr>
     </div>
-</div>
-
-<div *ngIf="!service.loggedUser">
-    <button class="btn btn-outline-success"(click)="service.login()">LOGIN</button>
-</div>
-<div *ngIf="service.loggedUser">
-    <b>BENTORNATO</b> {{service.loggedUser.firstname}} {{service.loggedUser.lastname}}
-    
-    <button class="btn btn-outline-dark" (click)="service.logout()">LOGOUT</button>
 </div>
 
 

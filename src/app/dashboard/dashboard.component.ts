@@ -12,6 +12,9 @@ export class DashboardComponent implements OnInit {
   lastFilm : Film[];
   topFilm: Film[];
 
+  username: string;
+  password: string;
+  successLogin: boolean;
   constructor(public service: UserService,
               public filmService: FilmService
      ) { }
@@ -22,5 +25,17 @@ export class DashboardComponent implements OnInit {
     this.lastFilm = this.filmService.getLastFilms();
     this.topFilm = this.filmService.getTopFilms();
   }
+  login() {
+    this.successLogin = this.service.login(this.username, this.password);
+  }
 
+  hearth(film){
+    console.log("INIZIO")
+    console.log(this.service.loggedUser.favoritesFilm)
+    this.service.loggedUser.favoritesFilm.push(film)
+
+    console.log("DOPO PUSH")
+
+
+  }
 }

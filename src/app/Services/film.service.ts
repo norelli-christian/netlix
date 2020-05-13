@@ -117,7 +117,7 @@ export class FilmService {
     cast: null,
     genres:null,
     tags:"",
-    coverUrl:""
+    coverUrl:CONFIG.assetsPath+"images/anelli.jpg"
   };
   selectedFilm: Film;
 
