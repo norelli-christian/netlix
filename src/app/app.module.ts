@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {FormsModule} from '@angular/forms';
+import { HttpClientModule }    from '@angular/common/http';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,6 +17,10 @@ import { EditGenreComponent } from './edit-genre/edit-genre.component';
 import { FilmsComponent } from './films/films.component';
 import { GenresComponent } from './genres/genres.component';
 import {NgxWebstorageModule} from 'ngx-webstorage';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { StarsComponent } from './stars/stars.component';
+import { FilmListFilterPipe } from './pipes/film-list-filter.pipe';
+
 
 
 @NgModule({
@@ -29,13 +35,17 @@ import {NgxWebstorageModule} from 'ngx-webstorage';
     EditFilmComponent,
     EditGenreComponent,
     FilmsComponent,
-    GenresComponent
+    GenresComponent,
+    StarsComponent,
+    FilmListFilterPipe,
+    HttpClientModule
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgxWebstorageModule.forRoot(),
-    FormsModule
+    FormsModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

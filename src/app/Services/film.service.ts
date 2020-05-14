@@ -82,7 +82,7 @@ const FILMS: Film[] = [
     director:"Peter Jackson",
     duration:"178 min",
     releaseYear:2001,
-    stars:2,
+    stars:2.5,
     cast:[{
       fistname:"Elijah",
       lastname:"Wood"
