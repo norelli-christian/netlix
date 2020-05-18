@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { User } from '../models/User';
 import { LocalStorageService } from 'ngx-webstorage';
+import { newUser } from '../models/newUser';
 const USERS: User[] = [
   {
     id: 1,
@@ -39,14 +40,29 @@ const USERS: User[] = [
     favoritesFilm: []
   },
 ];
+
+  
+    
+
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
   loggedUser:User;
   favoritesFilm: [];
-  constructor(public localStorage:LocalStorageService) { }
+  users:User[];
+  newUsers:newUser[];
+  newUser:newUser={
+    username:"",
+    password:"",
+    newFirstname:"",
+    newLastname:"",
+    newUsername:"",
+    newPassword:""
+  };
 
+  constructor(public localStorage:LocalStorageService) { }
+  error:String = ''
   login(username: string, password: string): boolean {
     this.loggedUser = USERS.find(x => x.username == username && x.password == password);
 
@@ -60,7 +76,29 @@ export class UserService {
     this.localStorage.clear("loggedUser");
   }
 
-  getLoggedUser(){
+  getLoggedUser():User{
     this.loggedUser = this.localStorage.retrieve('loggedUser');
+    return this.loggedUser;
   }
+
+  editUser(){   
+    let result = true;
+    this.newUser.username = this.loggedUser.username;
+    this.newUser.password = this.loggedUser.password;
+    if(this.newUser.newFirstname.length == 0 && this.newUser.newLastname.length == 0 && this.newUser.newUsername.length == 0 &&this.newUser.newPassword.length ==0){
+      result = false;
+      this.error = 'Devi modificare almeno un campo'
+    }else{
+      this.localStorage.store('newUsers', this.newUser);
+      this.error =''
+      console.log(this.newUser)
+    }
+
+    //console.log(this.newUser)
+    }
+
+  /*edit(){   
+    this.localStorage.store('films', this.films);
+    this.selectedFilm = null;
+  }*/
 }

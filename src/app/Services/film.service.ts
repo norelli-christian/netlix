@@ -4,6 +4,7 @@ import { ActorService } from './actor.service';
 import { LocalStorageService } from 'ngx-webstorage';
 import { CONFIG } from '../config';
 import { config } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 
 const FILMS: Film[] = [
@@ -121,7 +122,7 @@ export class FilmService {
   };
   selectedFilm: Film;
 
-  constructor(public localStorage:LocalStorageService) { }
+  constructor(public localStorage:LocalStorageService,) { }
 
 
   getFilms(): Film[]{

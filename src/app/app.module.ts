@@ -20,6 +20,7 @@ import {NgxWebstorageModule} from 'ngx-webstorage';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { StarsComponent } from './stars/stars.component';
 import { FilmListFilterPipe } from './pipes/film-list-filter.pipe';
+import { EditUserComponent } from './edit-user/edit-user.component';
 
 
 
@@ -38,14 +39,16 @@ import { FilmListFilterPipe } from './pipes/film-list-filter.pipe';
     GenresComponent,
     StarsComponent,
     FilmListFilterPipe,
-    HttpClientModule
+    EditUserComponent,
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgxWebstorageModule.forRoot(),
     FormsModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

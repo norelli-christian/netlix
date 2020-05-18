@@ -10,7 +10,7 @@ import { EditActorComponent } from './edit-actor/edit-actor.component';
 import { GenresComponent } from './genres/genres.component';
 import { AddGenreComponent } from './add-genre/add-genre.component';
 import { EditGenreComponent } from './edit-genre/edit-genre.component';
-
+import { EditUserComponent } from './edit-user/edit-user.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
@@ -24,6 +24,7 @@ const routes: Routes = [
   { path: 'genres', component: GenresComponent },
   { path: 'genres/add', component: AddGenreComponent },
   { path: 'genres/edit', component: EditGenreComponent },
+  { path: 'users/edit', component: EditUserComponent }
 ];
 
 @NgModule({

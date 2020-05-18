@@ -13,6 +13,7 @@
 
 <div *ngIf="service.loggedUser" >
    <div class="scrittaLogIn"><b>BENTORNATO</b> {{ service.loggedUser.firstname }} {{ service.loggedUser.lastname }}! </div> <button class="btn btn-outline-dark btn-sm buttonLogout"  (click)="service.logout()">LOGOUT</button>
+   <div class="scrittaLogIn">Conferma se desideri modificare i tuoi dati</div><button (click)="selectThisUser(service.loggedUser)" routerLink="/users/edit" class="btn btn-outline-info btn-sm buttonLogin">Conferma</button>
 </div>
 
 <h5 class="sottoTitoli">ULTIMI FILM INSERITI</h5>
