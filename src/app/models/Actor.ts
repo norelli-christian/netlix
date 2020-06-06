@@ -1,5 +1,5 @@
 export interface Actor{
-    id?:number;
+    id:number;
     fistname:string;
     lastname:string;
 }

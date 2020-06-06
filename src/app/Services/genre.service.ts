@@ -4,44 +4,54 @@ import { LocalStorageService } from 'ngx-webstorage';
 const GENRES: Genre[] = [
   
   {
+    id:1,
     name:"Fantascienza"
   },
 
 
   {
+    id:3,
     name:"Animazione"
   },
 
 
   {
+    id:8,
     name:"Avventura"
   },
 
   {
+    id:11,
     name:"Biografico"
   },
 
   {
+    id:14,
     name:"Commedia"
   },
 
   {
+    id:15,
     name:"Documentario"
   },
 
   {
+    id:19,
     name:"Drammatico"
   },
 
   {
+    id:22,
     name:"Thriller"
   },
 
   {
+    id:23,
     name:"Western"
   },
 
   {
+    id:25,
     name:"Horror"
   }
 
@@ -53,6 +63,7 @@ export class GenreService {
   genres: Genre[];
   newGenre: Genre;
   selectedGenre: Genre = {
+    id:0,
     name:""
   };
 
@@ -71,6 +82,7 @@ export class GenreService {
 
   reset():void{
     this.selectedGenre =  {
+      id:0,
       name:""  
     }
   }

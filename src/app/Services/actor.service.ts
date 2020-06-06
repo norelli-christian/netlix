@@ -5,18 +5,21 @@ import { LocalStorageService } from 'ngx-webstorage';
 const ACTORS: Actor[] = [
   
   {
+    id:1,
     fistname:"Daniel",
     lastname:"Radcliffe"
   },
 
 
   {
+    id:3,
     fistname:"Will",
     lastname:"Smith"
   },
 
 
   {
+    id:5,
     fistname:"Leonardo",
     lastname:"DiCaprio"
   }
@@ -31,6 +34,7 @@ export class ActorService {
   actors: Actor[];
   newActor: Actor;
   selectedActor: Actor = {
+    id:0,
     fistname:"",
     lastname:""
   };
@@ -48,6 +52,7 @@ export class ActorService {
 
   reset():void{
     this.selectedActor =  {
+      id:0,
       fistname:"",
       lastname:""
     }

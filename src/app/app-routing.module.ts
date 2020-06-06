@@ -17,14 +17,14 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
   { path: 'films', component: FilmsComponent },
   { path: 'films/add', component: AddFilmComponent },
-  { path: 'films/edit', component: EditFilmComponent },
+  { path: 'films/edit/:id', component: EditFilmComponent },
   { path: 'actors', component: ActorsComponent },
   { path: 'actors/add', component: AddActorComponent },
-  { path: 'actors/edit', component: EditActorComponent },
+  { path: 'actors/edit/:id', component: EditActorComponent },
   { path: 'genres', component: GenresComponent },
   { path: 'genres/add', component: AddGenreComponent },
-  { path: 'genres/edit', component: EditGenreComponent },
-  { path: 'users/edit', component: EditUserComponent }
+  { path: 'genres/edit/:id', component: EditGenreComponent },
+  { path: 'users/edit/:id', component: EditUserComponent }
 ];
 
 @NgModule({

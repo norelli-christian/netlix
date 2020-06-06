@@ -10,6 +10,7 @@ const USERS: User[] = [
     firstname: 'christian',
     lastname: 'norelli',
     favoritesFilm: [{
+      id:3,
       title:"Shining",
       description:"Shining rappresenta una tappa dell'itinerario di attraversamento-appropriazione-sfondamento dei generi cinematografici attuata da Kubrick nel corso della sua carriera.",
       director:"Stanley Kubrick",
@@ -17,14 +18,17 @@ const USERS: User[] = [
       releaseYear:1980,
       stars:3,
       cast:[{
+        id:5,
         fistname:"Jack",
         lastname:"Nicholson"
       },
       {
+        id:6,
         fistname:"Shelley",
         lastname:"Duvall"
       }],
       genres:[{
+        id:3,
         name:"Avventura"  
       }],
       tags:"Tags",

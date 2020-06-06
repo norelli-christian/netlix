@@ -13,7 +13,7 @@
     <div *ngIf ="film.show">
       <b>Attori: </b>  {{getCastList(film.cast)}} <b>Anno di uscita: </b>{{film.releaseYear}} <b>Generi: </b> {{getGenreList(film.genres)}} <b>Tag:</b> {{film.tags}}
     </div>
-    <div><button (click)="selectThisFilm(film)" routerLink="/films/edit" class="btn btn-outline-info btn-sm">Modifica film</button></div>
+    <div><button  routerLink="/films/edit/{{film.id}}" class="btn btn-outline-info btn-sm">Modifica film</button></div>
     <hr>
 </div>
 
