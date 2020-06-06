@@ -13,21 +13,47 @@
 
 <div *ngIf="service.loggedUser" >
    <div class="scrittaLogIn"><b>BENTORNATO</b> {{ service.loggedUser.firstname }} {{ service.loggedUser.lastname }}! </div> <button class="btn btn-outline-dark btn-sm buttonLogout"  (click)="service.logout()">LOGOUT</button>
-   <div class="scrittaLogIn">Conferma se desideri modificare i tuoi dati</div><button (click)="selectThisUser(service.loggedUser)" routerLink="/users/edit" class="btn btn-outline-info btn-sm buttonLogin">Conferma</button>
+   <div class="scrittaLogIn">Clicca qui sotto se desideri modificare i tuoi dati</div><button (click)="selectThisUser(service.loggedUser)" routerLink="/users/edit" class="btn btn-outline-dark btn-sm buttonLogout">CONFERMA</button>
 </div>
+
+
+
 
 <h5 class="sottoTitoli">ULTIMI FILM INSERITI</h5>
-<div *ngFor="let film of lastFilm" class="divGrande">
-    <div><img [src] = "film.coverUrl" height="50" width="50"><b *ngIf="service.loggedUser" (click)="hearth(film)">&#x2661;</b><b> Titolo: </b>{{film.title}}<b> Regista: </b>{{film.director}}<b> Durata: </b>{{film.duration}}<b> Anno di uscita: </b>{{film.releaseYear}}</div>
-    <hr>
+<div class="card-deck divGrande">
+    <div *ngFor="let film of lastFilm" class="card " style="width: 18rem;" > 
+        <img [src]="film.coverUrl" class="card-img-top" alt="...">
+        <div class="card-body" >
+          <h5 class="card-title"><b> Titolo: </b>{{film.title}}</h5>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"><b> Regista: </b>{{film.director}}</li>
+          <li class="list-group-item"><b> Durata: </b>{{film.duration}}</li>
+          <li class="list-group-item"><b> Anno di uscita: </b>{{film.releaseYear}}</li>
+        </ul>
+      </div>
 </div>
+    
+
 
 <h5 class="sottoTitoli">TOP 3 FILM</h5>
-
-<div *ngFor="let film of topFilm" class="divGrande">
-    <div><img [src] = "film.coverUrl" height="50" width="50"><b *ngIf="service.loggedUser" (click)="hearth(film)">&#x2661;</b><b>Titolo: </b>{{film.title}}<b> Regista: </b>{{film.director}}<b> Durata: </b>{{film.duration}}<b> Anno di uscita:</b>{{film.releaseYear}}
-        <hr>
-    </div>
+<div class="card-deck divGrande">
+    <div *ngFor="let film of topFilm" class="card " style="width: 18rem;" > 
+        <img [src]="film.coverUrl" class="card-img-top" alt="...">
+        <div class="card-body" >
+          <h5 class="card-title"><b> Titolo: </b>{{film.title}}</h5>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"><b> Regista: </b>{{film.director}}</li>
+          <li class="list-group-item"><b> Durata: </b>{{film.duration}}</li>
+          <li class="list-group-item"><b> Anno di uscita: </b>{{film.releaseYear}}</li>
+        </ul>
+      </div>
 </div>
+
+
+
+
+
 
 

@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { User } from '../models/User';
 import { LocalStorageService } from 'ngx-webstorage';
 import { newUser } from '../models/newUser';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+
 const USERS: User[] = [
   {
     id: 1,
@@ -33,7 +35,8 @@ const USERS: User[] = [
       }],
       tags:"Tags",
       coverUrl:""
-    }]
+    }],
+    token:'pippo'
   },
   {
     id: 2,
@@ -41,7 +44,8 @@ const USERS: User[] = [
     password: 'marchetti',
     firstname: 'marco',
     lastname: 'marchini',
-    favoritesFilm: []
+    favoritesFilm: [],
+    token:'pippo'
   },
 ];
 
@@ -65,12 +69,23 @@ export class UserService {
     newPassword:""
   };
 
-  constructor(public localStorage:LocalStorageService) { }
+  constructor(
+    public localStorage:LocalStorageService,
+    private http:HttpClient
+    ) { }
+
   error:String = ''
   login(username: string, password: string): boolean {
-    this.loggedUser = USERS.find(x => x.username == username && x.password == password);
+    this.http.post<User>('http://netflix.cristiancarrino.com/user/login.php',{
+      "username":username,
+      "password":password
+    }).subscribe(response =>{
+      console.log(response);
+      this.loggedUser = response
+      this.localStorage.store('loggedUser', this.loggedUser);
+    })
 
-    this.localStorage.store('loggedUser', this.loggedUser);
+    
 
     return this.loggedUser != null;
   }

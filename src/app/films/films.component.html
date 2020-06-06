@@ -3,9 +3,9 @@
 <div class="ricerca"><h6>Ricerca film: <input type="text" placeholder="" [(ngModel)]="text"></h6></div>
 
 
-<div *ngFor="let film of this.films|filmListFilter:text" class="divGrande">
+<div *ngFor="let film of films|filmListFilter:text" class="divGrande">
     <div class="espandi">
-     <img [src] = "film.coverUrl" height="50" width="50">
+     <img [src] = "film.coverUrl" height="100" width="100">
      <b *ngIf="userService.loggedUser" (click)="hearth(film)">&#x2661;</b><b>Titolo: </b> {{film.title}} <b>Valutazione: {{film.stars}}</b><app-stars (voteChanged)="setVote(film, $event)" [vote] ="film.stars"></app-stars> <b>Durata: </b>{{film.duration}}
         <button (click) ="film.show = !film.show" class="btn btn-outline-info btn-sm">Espandi</button>
     </div>
@@ -13,8 +13,10 @@
     <div *ngIf ="film.show">
       <b>Attori: </b>  {{getCastList(film.cast)}} <b>Anno di uscita: </b>{{film.releaseYear}} <b>Generi: </b> {{getGenreList(film.genres)}} <b>Tag:</b> {{film.tags}}
     </div>
-    <div><button  routerLink="/films/edit/{{film.id}}" class="btn btn-outline-info btn-sm">Modifica film</button></div>
+    <div><button (click)='selectThisFilm(film)' routerLink="/films/edit/{{ film.id}}" class="btn btn-outline-info btn-sm">Modifica film</button></div>
+    <div><button (click)='service.removeFilm(film)'  class="btn btn-outline-info btn-sm">Rimuovi film</button></div>
     <hr>
+
 </div>
 
 

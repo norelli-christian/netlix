@@ -20,11 +20,11 @@ const routes: Routes = [
   { path: 'films/edit/:id', component: EditFilmComponent },
   { path: 'actors', component: ActorsComponent },
   { path: 'actors/add', component: AddActorComponent },
-  { path: 'actors/edit/:id', component: EditActorComponent },
+  { path: 'actors/edit', component: EditActorComponent },
   { path: 'genres', component: GenresComponent },
   { path: 'genres/add', component: AddGenreComponent },
-  { path: 'genres/edit/:id', component: EditGenreComponent },
-  { path: 'users/edit/:id', component: EditUserComponent }
+  { path: 'genres/edit', component: EditGenreComponent },
+  { path: 'users/edit', component: EditUserComponent }
 ];
 
 @NgModule({

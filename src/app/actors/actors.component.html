@@ -1,1 +1,19 @@
-<p>actors works!</p>
+<div><a class="link" routerLink="/dashboard">Torna alla dashboard</a></div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-6 col-md-4 col-lg-3" *ngFor="let actor of actors">
+            
+            <div class="card border-danger mb-3" style="max-width: 18rem;">               
+                <div class="card-header bg-danger border-danger">{{ actor.firstname }} {{ actor.lastname }}</div>
+
+                <div class="card-body text-dark">
+                    <h6 class="text-body">Film</h6>
+                    <p class="card-text" *ngIf="!actor.films.length">Nessuno</p>
+                    <ul *ngIf="actor.films.length">
+                        <li *ngFor="let film of actor.films">{{ film.title }}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

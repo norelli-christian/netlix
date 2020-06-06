@@ -4,6 +4,8 @@ import { Actor } from '../models/Actor';
 import { ActorService } from '../Services/actor.service';
 import { GenreService } from '../Services/genre.service';
 import { Genre } from '../models/Genre';
+import { Router } from '@angular/router';
+import { Film } from '../models/film';
 
 @Component({
   selector: 'app-add-film',
@@ -13,11 +15,86 @@ import { Genre } from '../models/Genre';
 export class AddFilmComponent implements OnInit {
   actors:Actor[];
   genres:Genre[];
-  constructor(public filmService:FilmService, public actorService:ActorService, public genreService:GenreService) { }
+  film: Film;
 
-  ngOnInit(): void {
-    this.actors = this.actorService.getActors();
-    this.genres = this.genreService.getGenres();
+  constructor(private router: Router,public filmService:FilmService, public actorService:ActorService, public genreService:GenreService) { }
+
+  ngOnInit() {
+    this.resetFilm();
+    
+    this.actorService.getActors().subscribe(actors => {
+      this.actors = actors;
+      
+      this.actors.map(x => {
+        x.selected = false;
+        return x;
+      });
+      this.actors.map(x => {
+        x.selected = false;
+        return x;
+      });
+
+
+      this.actors.sort((a, b) => {
+        let nameA = (a.fistname + ' ' + a.lastname).toUpperCase();
+        let nameB = (b.fistname + ' ' + b.lastname).toUpperCase();
+        if (nameA < nameB) {
+          return -1;
+        }
+        if (nameA > nameB) {
+          return 1;
+        }
+      });
+    });
+    
+    this.genreService.getGenres().subscribe(genres => {
+    this.genres = genres;
+
+    this.genres.map(x => {
+      x.selected = false;
+      return x;
+    });
+
+      this.genres.sort((a, b) => {
+        let nameA = a.name.toUpperCase();
+        let nameB = b.name.toUpperCase();
+        if (nameA < nameB) {
+          return -1;
+        }
+        if (nameA > nameB) {
+          return 1;
+        }
+        if (nameA > nameB) {
+          return 1;
+        }
+      });
+    });  
+  }
+  
+  resetFilm(): void {
+    this.film = {
+      title: '',
+      description: '',
+      director: '',
+      duration: '',
+      releaseYear: 0,
+      stars: 0,
+      cast: [],
+      genres: [],
+      tags: '',
+      coverUrl:''
+    }
+  }
+  
+  addFilm() {
+      this.film.cast = this.actors.filter(x => x.selected);
+      this.film.genres = this.genres.filter(x => x.selected);
+      
+      this.filmService.addFilm(this.film).subscribe(response => {
+      if (response.success) {
+        this.router.navigate(['films']);
+      }
+    })
   }
 
 }

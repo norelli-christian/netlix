@@ -1,0 +1,22 @@
+a:link, a:visited {
+    text-decoration: none;
+    color: #F58529;
+    background-color: transparent;
+}
+a:hover, a:active {
+    text-decoration: underline;
+    color: rgb(92, 26, 26);
+}
+
+.link{
+    margin-left:33%;
+    margin-bottom:3%
+}
+
+
+@media screen and (min-width: 1200px) {
+    .link{
+        margin-left:1%;
+        margin-bottom:1%
+    }
+}

@@ -1,6 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Actor } from '../models/Actor';
 import { LocalStorageService } from 'ngx-webstorage';
+import { Observable, of } from 'rxjs';
+import { CONFIG } from '../config';
+import { tap, map, catchError } from 'rxjs/operators';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+
 
 const ACTORS: Actor[] = [
   
@@ -30,7 +35,8 @@ const ACTORS: Actor[] = [
 })
 export class ActorService {
 
-  constructor(public localStorage:LocalStorageService) { }
+  constructor(public localStorage:LocalStorageService,
+              private http: HttpClient) { }
   actors: Actor[];
   newActor: Actor;
   selectedActor: Actor = {
@@ -39,9 +45,14 @@ export class ActorService {
     lastname:""
   };
 
-  getActors(): Actor[]{
-    this.actors = this.localStorage.retrieve('actors') || ACTORS;
-    return this.actors;
+  getActors(): Observable<Actor[]> {
+    if (this.actors) {
+      return of(this.actors);
+    } else {
+      return this.http.get<Actor[]>(CONFIG.hostApi + '/actor/read.php').pipe(
+        tap(response => this.actors = response),
+      );
+    }
   }
 
   addActors(): void{

@@ -1,1 +1,20 @@
-<p>genres works!</p>
+<div><a class="link" routerLink="/dashboard">Torna alla dashboard</a></div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-6 col-md-4 col-lg-3" *ngFor="let genre of genres">
+            
+            <div class="card border-danger mb-3" style="max-width: 18rem;">                  
+                <div class="card-header bg-danger border-danger">{{ genre.name }}</div>
+
+                <!-- Info -->
+                <div class="card-body">
+                    <h6>Film</h6>
+                    <p *ngIf="!genre.films.length">Nessuno</p>
+                    <ul *ngIf="genre.films.length">
+                        <li *ngFor="let film of genre.films">{{ film.title }}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

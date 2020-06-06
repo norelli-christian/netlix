@@ -1,4 +1,8 @@
+import { Film } from './film';
+
 export interface Genre{
-    id:number;
+    id?:number;
     name:string;
+    films?: Film[];
+    selected?: boolean;
 }

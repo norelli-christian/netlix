@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Genre } from '../models/Genre';
 import { LocalStorageService } from 'ngx-webstorage';
+import { HttpClient } from '@angular/common/http';
+import { Observable, of } from 'rxjs';
+import { CONFIG } from '../config';
+import { tap } from 'rxjs/operators';
 const GENRES: Genre[] = [
   
   {
@@ -67,11 +71,16 @@ export class GenreService {
     name:""
   };
 
-  constructor(public localStorage:LocalStorageService) { }
+  constructor(public localStorage:LocalStorageService, private http: HttpClient) { }
 
-  getGenres(): Genre[]{
-    this.genres = this.localStorage.retrieve('genres') || GENRES;
-    return this.genres;
+  getGenres(): Observable<Genre[]> {
+    if (this.genres) {
+      return of(this.genres);
+    } else {
+      return this.http.get<Genre[]>(CONFIG.hostApi + '/genre/read.php').pipe(
+        tap(response => this.genres = response),
+      );
+    }
   }
 
   addGenres(): void{

@@ -14,7 +14,7 @@ import { UserService } from '../Services/user.service';
   styleUrls: ['./films.component.css']
 })
 export class FilmsComponent implements OnInit {
-  films:Film[];
+  films:Film[] =[];
   CONFIG = CONFIG
   timeout;
   text:string = '';
@@ -23,7 +23,9 @@ export class FilmsComponent implements OnInit {
               public userService: UserService) { }
 
   ngOnInit(): void {
-    this.films = this.service.getFilms();
+    this.service.getFilms().subscribe(response =>{
+      this.films = response;
+    });
   }
 
   getCastList(cast:Actor[]):string{
@@ -51,7 +53,6 @@ export class FilmsComponent implements OnInit {
 
   setVote(film:Film, vote:number){
     film.stars = vote
-    this.service.edit()
-  }
+    this.service.editFilm(film).subscribe(response => console.log(response))  }
   
 }

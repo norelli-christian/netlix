@@ -3,8 +3,10 @@ import { Film } from '../models/Film';
 import { ActorService } from './actor.service';
 import { LocalStorageService } from 'ngx-webstorage';
 import { CONFIG } from '../config';
-import { config } from 'rxjs';
+import { config, Observable, of } from 'rxjs';
+import { tap, catchError} from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { UserService } from './user.service';
 
 
 const FILMS: Film[] = [
@@ -135,58 +137,119 @@ export class FilmService {
     cast: null,
     genres:null,
     tags:"",
-    coverUrl:CONFIG.assetsPath+"images/anelli.jpg"
+    coverUrl:/*CONFIG.assetsPath+"images/anelli.jpg"*/""
   };
   selectedFilm: Film;
+  
 
-  constructor(public localStorage:LocalStorageService,) { }
+  constructor(
+    public localStorage:LocalStorageService,
+    private http:HttpClient,
+    private userService:UserService) { }
 
 
-  getFilms(): Film[]{
-    this.films = this.localStorage.retrieve('films') || FILMS;
-    return this.films;
+  getFilms(): Observable<Film[]>{
+    //this.films = this.localStorage.retrieve('films') || FILMS;
+    //return this.films;
+
+    return this.http.get<Film[]>('http://netflix.cristiancarrino.com/film/read.php').pipe(
+      //tap()
+    );  
   }
 
-  addFilms(): void{
-    if(!this.films){
-      this.getFilms();
+  addFilm(film: Film): Observable<any> {
+    let loggedUser = this.userService.getLoggedUser();
+
+    if (!loggedUser) {
+      alert('please login');
+      return;
     }
-    this.films.push(this.newFilm);
-    this.localStorage.store('films', this.films);
-    this.newFilm =  {
-      id:0,
-      title:"",
-      description:"",
-      director:"",
-      duration:"",
-      releaseYear:0,
-      stars:0,
-      cast: [],
-      genres:[],
-      tags:"",
-      coverUrl:""
-    }
-  }
 
-
-  edit(){   
-    this.localStorage.store('films', this.films);
-    console.log(this.selectedFilm.id)
-    this.selectedFilm = null;
-  }
-
-  getLastFilms():Film[]{
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': loggedUser.token
+      })
+    };
     
-    return this.films.slice(0, 4);
+    return this.http.post<any>(CONFIG.hostApi + '/film/create.php', film, httpOptions).pipe(
+      tap(response => {
+        if (response.success) {
+          if (this.films) {
+            film.id = response.id;
+            this.films.push(film);
+          } else {
+            this.getFilms().subscribe();
+          }
+        }
+      }),
+      catchError(error => {
+        alert(error.status + ': ' + error.error);
+        return of(false);
+      })
+    );
+  }
+  
+  editFilm(film: Film): Observable<any> {
+    let loggedUser = this.userService.getLoggedUser();
+
+    if (!loggedUser) {
+      alert('please login');
+      return;
+    }
+
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': loggedUser.token
+      })
+    };
+
+    return this.http.post<any>(CONFIG.hostApi + '/film/update.php', film, httpOptions).pipe(
+      tap(response => {
+        console.log(response);
+        if (response.success) {
+          if (this.films) {
+            let filmToEdit = this.films.find(x => x.id == film.id);
+            filmToEdit = film;
+          } else {
+            this.getFilms().subscribe();
+          }
+        }
+      }),
+      catchError(error => {
+        alert(error.status + ': ' + error.error);
+        return of(false);
+      })
+    );
+  }
+  removeFilm(id:number){
+    let loggedUser = this.userService.getLoggedUser()
+    console.log("id:" +id)
+    let httpOptions={
+      headers:new HttpHeaders(
+        {
+          'Content-Type':'application/json',
+          'Authorization':loggedUser.token
+        }
+      )
+    }
+    this.http.post<Film>('http://netflix.cristiancarrino.com/film/delete.php',{id : id},httpOptions).subscribe(response=>{
+    console.log(response)  
+    this.getFilms().subscribe(response=>this.films = response)
+    });
+  }
+  
+
+  getLastFilms(films:Film[]):Film[]{
+    
+    return films.slice(-4)
   }
 
-  getTopFilms():Film[]{
-    return this.films.sort(function(film1, film2){
+  getTopFilms(films:Film[]):Film[]{
+    return films.sort(function(film1, film2){
       if (film1.stars > film2.stars)
           return -1;
-      if (film1.stars < film2.stars)
-          return 1;
-      return 0
   }).slice(0,3);
   }
 }
