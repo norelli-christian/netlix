@@ -19,9 +19,11 @@
 
 
 
-<h5 class="sottoTitoli">ULTIMI FILM INSERITI</h5>
-<div class="card-deck divGrande">
-    <div *ngFor="let film of lastFilm" class="card " style="width: 18rem;" > 
+<h5 class="sottoTitoli"><b>ULTIMI FILM INSERITI</b></h5>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-6 col-md-4 col-lg-3" *ngFor="let film of lastFilm">
+        <div class="card imgdas"  > 
         <img [src]="film.coverUrl" class="card-img-top" alt="...">
         <div class="card-body" >
           <h5 class="card-title"><b> Titolo: </b>{{film.title}}</h5>
@@ -31,14 +33,17 @@
           <li class="list-group-item"><b> Durata: </b>{{film.duration}}</li>
           <li class="list-group-item"><b> Anno di uscita: </b>{{film.releaseYear}}</li>
         </ul>
-      </div>
+        </div>
+        </div>
+    </div>
 </div>
     
 
-
-<h5 class="sottoTitoli">TOP 3 FILM</h5>
-<div class="card-deck divGrande">
-    <div *ngFor="let film of topFilm" class="card " style="width: 18rem;" > 
+<h5 class="sottoTitoli"><b>TOP 3 FILM</b></h5>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-6 col-md-4 col-lg-4" *ngFor="let film of topFilm">
+        <div class="card imgdas"  > 
         <img [src]="film.coverUrl" class="card-img-top" alt="...">
         <div class="card-body" >
           <h5 class="card-title"><b> Titolo: </b>{{film.title}}</h5>
@@ -48,8 +53,11 @@
           <li class="list-group-item"><b> Durata: </b>{{film.duration}}</li>
           <li class="list-group-item"><b> Anno di uscita: </b>{{film.releaseYear}}</li>
         </ul>
-      </div>
+        </div>
+        </div>
+    </div>
 </div>
+
 
 
 

@@ -223,21 +223,20 @@ export class FilmService {
       })
     );
   }
-  removeFilm(id:number){
-    let loggedUser = this.userService.getLoggedUser()
-    console.log("id:" +id)
-    let httpOptions={
-      headers:new HttpHeaders(
-        {
-          'Content-Type':'application/json',
-          'Authorization':loggedUser.token
-        }
-      )
+  removeFilm(film: Film): Observable<any> {
+    let loggedUser = this.userService.getLoggedUser();
+    
+    if (!loggedUser) {
+      alert('please login');
+      return;
     }
-    this.http.post<Film>('http://netflix.cristiancarrino.com/film/delete.php',{id : id},httpOptions).subscribe(response=>{
-    console.log(response)  
-    this.getFilms().subscribe(response=>this.films = response)
-    });
+
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': loggedUser.token
+      })
+    };
   }
   
 

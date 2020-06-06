@@ -18,6 +18,13 @@ a:hover, a:active {
 .espandi{
     margin-bottom: 1%;
 }
+.sottoTitoli{
+    margin-top:5%;
+    color:rgb(177, 23, 23)
+}
+.imgdas{
+    width: 16rem
+}
 
 @media screen and (min-width: 1200px) {
     .link{
@@ -30,5 +37,14 @@ a:hover, a:active {
     .ricerca{
         margin-top: 2%;
         margin-left:1%
+    }
+
+    .sottoTitoli{
+        margin-left:1%;
+        margin-top:1%
+    }
+
+    .imgdas{
+        width: 18rem
     }
 }

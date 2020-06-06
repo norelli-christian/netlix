@@ -28,7 +28,9 @@ a:hover, a:active {
 .scritta{
     margin-left:25%;
 }
-
+.imgdas{
+    width: 16rem
+}
 @media screen and (min-width: 1200px) {
     .link{
         margin-left:1%;
@@ -59,5 +61,8 @@ a:hover, a:active {
     }
     .scritta{
         margin-left:1%
+    }
+    .imgdas{
+        width: 18rem
     }
 }
