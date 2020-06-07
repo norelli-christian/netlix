@@ -53,7 +53,8 @@ export class FilmsComponent implements OnInit {
 
   setVote(film:Film, vote:number){
     film.stars = vote
-    this.service.editFilm(film).subscribe(response => console.log(response))  }
+    this.service.editFilm(film).subscribe(response => console.log(response)) 
+   }
   
     remove (film: Film): void {
       this.service.removeFilm(film).subscribe(() => this.ngOnInit());

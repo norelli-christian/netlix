@@ -237,6 +237,22 @@ export class FilmService {
         'Authorization': loggedUser.token
       })
     };
+
+    return this.http.post<any>(CONFIG.hostApi + '/film/delete.php', { id: film.id }, httpOptions).pipe(
+      tap(response => {
+        if (response.success) {
+          if (this.films) {
+            this.films = this.films.filter(x => x.id != film.id);
+          } else {
+            this.getFilms().subscribe();
+          }
+        }
+      }),
+      catchError(error => {
+        alert(error.status + ': ' + error.error);
+        return of(false);
+      })
+    );
   }
   
 
